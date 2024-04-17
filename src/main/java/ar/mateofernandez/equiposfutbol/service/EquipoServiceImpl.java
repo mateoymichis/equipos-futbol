@@ -4,6 +4,7 @@ import ar.mateofernandez.equiposfutbol.model.Equipo;
 import ar.mateofernandez.equiposfutbol.repository.EquipoRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,6 +23,11 @@ public class EquipoServiceImpl implements EquipoService {
     @Override
     public Optional<Equipo> find(Integer id) {
         return equipoRepository.findById(id);
+    }
+
+    @Override
+    public List<Equipo> getAll() {
+        return equipoRepository.findAll();
     }
 
     @Override

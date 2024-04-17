@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -20,6 +21,10 @@ public class EquipoController {
         this.equipoService = equipoService;
     }
 
+    @GetMapping
+    public ResponseEntity<List<Equipo>> getAll() {
+        return new ResponseEntity<>(equipoService.getAll(), HttpStatus.OK);
+    }
     @GetMapping("/{id}")
     public ResponseEntity<Optional<Equipo>> get(@PathVariable("id") Integer id) {
         Optional<Equipo> equipo = equipoService.find(id);
