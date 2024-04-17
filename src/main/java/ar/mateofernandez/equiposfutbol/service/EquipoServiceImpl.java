@@ -2,15 +2,17 @@ package ar.mateofernandez.equiposfutbol.service;
 
 import ar.mateofernandez.equiposfutbol.model.Equipo;
 import ar.mateofernandez.equiposfutbol.repository.EquipoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
 public class EquipoServiceImpl implements EquipoService {
-    @Autowired
-    private EquipoRepository equipoRepository;
+    private final EquipoRepository equipoRepository;
+
+    public EquipoServiceImpl(EquipoRepository equipoRepository) {
+        this.equipoRepository = equipoRepository;
+    }
 
     @Override
     public void save(Equipo equipo) {

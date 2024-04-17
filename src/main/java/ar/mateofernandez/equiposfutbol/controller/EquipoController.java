@@ -1,7 +1,7 @@
 package ar.mateofernandez.equiposfutbol.controller;
 
 import ar.mateofernandez.equiposfutbol.model.Equipo;
-import ar.mateofernandez.equiposfutbol.service.EquipoService;
+import ar.mateofernandez.equiposfutbol.service.EquipoServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +14,11 @@ import java.util.Optional;
 @RestController
 @RequestMapping("equipos")
 public class EquipoController {
-    EquipoService equipoService;
+    EquipoServiceImpl equipoService;
+
+    public EquipoController(EquipoServiceImpl equipoService) {
+        this.equipoService = equipoService;
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Optional<Equipo>> get(@PathVariable("id") Integer id) {

@@ -1,7 +1,6 @@
 package ar.mateofernandez.equiposfutbol.service;
 
 import ar.mateofernandez.equiposfutbol.model.Equipo;
-import jakarta.persistence.criteria.CriteriaBuilder;
 
 import java.util.Optional;
 
