@@ -1,5 +1,6 @@
 package ar.mateofernandez.equiposfutbol.service;
 
+import ar.mateofernandez.equiposfutbol.exception.EquipoException;
 import ar.mateofernandez.equiposfutbol.model.CrearEquipoDto;
 import ar.mateofernandez.equiposfutbol.model.Equipo;
 
@@ -11,4 +12,6 @@ public interface EquipoService {
     Optional<Equipo> find(Integer id);
     List<Equipo> getAll();
     void delete (Integer id);
+    boolean exists(Integer id);
+    Optional<Equipo> edit(Integer id, CrearEquipoDto equipo) throws EquipoException;
 }

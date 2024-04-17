@@ -1,5 +1,6 @@
 package ar.mateofernandez.equiposfutbol.controller;
 
+import ar.mateofernandez.equiposfutbol.exception.EquipoException;
 import ar.mateofernandez.equiposfutbol.model.CrearEquipoDto;
 import ar.mateofernandez.equiposfutbol.model.Equipo;
 import ar.mateofernandez.equiposfutbol.service.EquipoServiceImpl;
@@ -33,5 +34,14 @@ public class EquipoController {
     public ResponseEntity<Equipo> save(@RequestBody CrearEquipoDto equipoDto) {
         Equipo equipo = equipoService.save(equipoDto);
         return new ResponseEntity<>(equipo, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> edit(@PathVariable Integer id, @RequestBody CrearEquipoDto equipo) {
+        try {
+            return new ResponseEntity<>(equipoService.edit(id, equipo), HttpStatus.OK);
+        } catch (EquipoException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
     }
 }
