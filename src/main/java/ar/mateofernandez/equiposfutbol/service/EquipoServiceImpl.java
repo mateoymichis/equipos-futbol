@@ -39,8 +39,10 @@ public class EquipoServiceImpl implements EquipoService {
     }
 
     @Override
-    public void delete(Integer id) {
-        equipoRepository.deleteById(id);
+    public void delete(Integer id) throws EquipoException {
+        if(exists(id))
+            equipoRepository.deleteById(id);
+        else throw new EquipoException(NO_EXISTE);
     }
 
     @Override

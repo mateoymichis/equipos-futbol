@@ -44,4 +44,14 @@ public class EquipoController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> delete(@PathVariable Integer id) {
+        try {
+            equipoService.delete(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (EquipoException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }

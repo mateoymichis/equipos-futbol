@@ -11,7 +11,7 @@ public interface EquipoService {
     Equipo save(CrearEquipoDto equipo);
     Optional<Equipo> find(Integer id);
     List<Equipo> getAll();
-    void delete (Integer id);
+    void delete (Integer id) throws EquipoException;
     boolean exists(Integer id);
     Optional<Equipo> edit(Integer id, CrearEquipoDto equipo) throws EquipoException;
 }
