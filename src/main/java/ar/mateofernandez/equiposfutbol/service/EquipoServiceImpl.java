@@ -1,5 +1,6 @@
 package ar.mateofernandez.equiposfutbol.service;
 
+import ar.mateofernandez.equiposfutbol.model.CrearEquipoDto;
 import ar.mateofernandez.equiposfutbol.model.Equipo;
 import ar.mateofernandez.equiposfutbol.repository.EquipoRepository;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,13 @@ public class EquipoServiceImpl implements EquipoService {
     }
 
     @Override
-    public void save(Equipo equipo) {
-        equipoRepository.save(equipo);
+    public Equipo save(CrearEquipoDto equipoDto) {
+        Equipo equipo = new Equipo();
+        equipo.setNombre(equipoDto.getNombre());
+        equipo.setLiga(equipoDto.getLiga());
+        equipo.setPais(equipoDto.getPais());
+
+        return equipoRepository.save(equipo);
     }
 
     @Override
