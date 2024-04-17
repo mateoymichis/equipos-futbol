@@ -3,6 +3,7 @@ package ar.mateofernandez.equiposfutbol.controller;
 import ar.mateofernandez.equiposfutbol.exception.EquipoException;
 import ar.mateofernandez.equiposfutbol.model.CrearEquipoDto;
 import ar.mateofernandez.equiposfutbol.model.Equipo;
+import ar.mateofernandez.equiposfutbol.model.ErrorResponse;
 import ar.mateofernandez.equiposfutbol.service.EquipoServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,7 +52,8 @@ public class EquipoController {
             equipoService.delete(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (EquipoException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            ErrorResponse errorResponse = new ErrorResponse("Equipo no encontrado", 404);
+            return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
         }
     }
 }
