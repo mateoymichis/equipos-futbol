@@ -10,12 +10,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("equipos")
 public class EquipoController {
-    EquipoServiceImpl equipoService;
+    private final EquipoServiceImpl equipoService;
+    public static final String NOT_FOUND_MSG = "Equipo no encontrado";
+    public static final int NOT_FOUND_CODE = 404;
 
     public EquipoController(EquipoServiceImpl equipoService) {
         this.equipoService = equipoService;
@@ -26,9 +27,14 @@ public class EquipoController {
         return new ResponseEntity<>(equipoService.getAll(), HttpStatus.OK);
     }
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Equipo>> get(@PathVariable("id") Integer id) {
-        Optional<Equipo> equipo = equipoService.find(id);
-        return new ResponseEntity<>(equipo, HttpStatus.OK);
+    public ResponseEntity<Object> get(@PathVariable("id") Integer id) {
+        try {
+            return new ResponseEntity<>(equipoService.find(id), HttpStatus.OK);
+        } catch (EquipoException e) {
+            ErrorResponse errorResponse = new ErrorResponse(NOT_FOUND_MSG, NOT_FOUND_CODE);
+            return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+        }
+
     }
 
     @PostMapping
@@ -52,7 +58,7 @@ public class EquipoController {
             equipoService.delete(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (EquipoException e) {
-            ErrorResponse errorResponse = new ErrorResponse("Equipo no encontrado", 404);
+            ErrorResponse errorResponse = new ErrorResponse(NOT_FOUND_MSG, NOT_FOUND_CODE);
             return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
         }
     }

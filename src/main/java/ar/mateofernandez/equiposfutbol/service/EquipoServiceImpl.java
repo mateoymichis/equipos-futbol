@@ -29,7 +29,9 @@ public class EquipoServiceImpl implements EquipoService {
     }
 
     @Override
-    public Optional<Equipo> find(Integer id) {
+    public Optional<Equipo> find(Integer id) throws EquipoException {
+        if(!exists(id))
+            throw new EquipoException(NO_EXISTE);
         return equipoRepository.findById(id);
     }
 

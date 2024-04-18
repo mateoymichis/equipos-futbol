@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface EquipoService {
     Equipo save(CrearEquipoDto equipo);
-    Optional<Equipo> find(Integer id);
+    Optional<Equipo> find(Integer id) throws EquipoException;
     List<Equipo> getAll();
     void delete (Integer id) throws EquipoException;
     boolean exists(Integer id);
