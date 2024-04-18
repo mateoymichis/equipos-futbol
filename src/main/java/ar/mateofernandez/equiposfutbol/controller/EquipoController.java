@@ -26,6 +26,7 @@ public class EquipoController {
     public ResponseEntity<List<Equipo>> getAll() {
         return new ResponseEntity<>(equipoService.getAll(), HttpStatus.OK);
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<Object> get(@PathVariable("id") Integer id) {
         try {
@@ -48,7 +49,8 @@ public class EquipoController {
         try {
             return new ResponseEntity<>(equipoService.edit(id, equipo), HttpStatus.OK);
         } catch (EquipoException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+            ErrorResponse errorResponse = new ErrorResponse(NOT_FOUND_MSG, NOT_FOUND_CODE);
+            return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
         }
     }
 
