@@ -38,6 +38,11 @@ public class EquipoController {
 
     }
 
+    @GetMapping("/buscar")
+    public List<Equipo> findByName(@RequestParam String nombre) {
+        return equipoService.findByName(nombre);
+    }
+
     @PostMapping
     public ResponseEntity<Equipo> save(@RequestBody CrearEquipoDto equipoDto) {
         Equipo equipo = equipoService.save(equipoDto);

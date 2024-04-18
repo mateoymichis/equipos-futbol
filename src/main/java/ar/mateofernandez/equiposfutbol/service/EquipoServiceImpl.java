@@ -41,6 +41,11 @@ public class EquipoServiceImpl implements EquipoService {
     }
 
     @Override
+    public List<Equipo> findByName(String nombre) {
+        return equipoRepository.findByNombreContaining(nombre);
+    }
+
+    @Override
     public void delete(Integer id) throws EquipoException {
         if(exists(id))
             equipoRepository.deleteById(id);
