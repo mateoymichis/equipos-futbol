@@ -7,6 +7,8 @@ import ar.mateofernandez.equiposfutbol.model.ErrorResponse;
 import ar.mateofernandez.equiposfutbol.service.EquipoServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +19,8 @@ public class EquipoController {
     private final EquipoServiceImpl equipoService;
     public static final String NOT_FOUND_MSG = "Equipo no encontrado";
     public static final int NOT_FOUND_CODE = 404;
+    public static final String BAD_REQUEST_MSG = "La solicitud es invalida";
+    public static final int BAD_REQUEST_CODE = 400;
 
     public EquipoController(EquipoServiceImpl equipoService) {
         this.equipoService = equipoService;
@@ -44,7 +48,11 @@ public class EquipoController {
     }
 
     @PostMapping
-    public ResponseEntity<Equipo> save(@RequestBody CrearEquipoDto equipoDto) {
+    public ResponseEntity<Object> save(@Validated @RequestBody CrearEquipoDto equipoDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            ErrorResponse errorResponse = new ErrorResponse(BAD_REQUEST_MSG, BAD_REQUEST_CODE);
+            return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+        }
         Equipo equipo = equipoService.save(equipoDto);
         return new ResponseEntity<>(equipo, HttpStatus.CREATED);
     }
