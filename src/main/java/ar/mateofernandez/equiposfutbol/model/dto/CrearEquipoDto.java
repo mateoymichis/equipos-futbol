@@ -1,4 +1,4 @@
-package ar.mateofernandez.equiposfutbol.model;
+package ar.mateofernandez.equiposfutbol.model.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package ar.mateofernandez.equiposfutbol.model;
+package ar.mateofernandez.equiposfutbol.model.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

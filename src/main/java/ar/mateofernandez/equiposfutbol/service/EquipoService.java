@@ -1,7 +1,7 @@
 package ar.mateofernandez.equiposfutbol.service;
 
 import ar.mateofernandez.equiposfutbol.exception.EquipoException;
-import ar.mateofernandez.equiposfutbol.model.CrearEquipoDto;
+import ar.mateofernandez.equiposfutbol.model.dto.CrearEquipoDto;
 import ar.mateofernandez.equiposfutbol.model.Equipo;
 
 import java.util.List;

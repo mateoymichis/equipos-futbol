@@ -23,6 +23,7 @@ VALUES (1, 'Real Madrid', 'La Liga', 'España'),
        (22, 'Besiktas JK', 'Süper Lig', 'Turquía'),
        (23, 'SSC Napoli', 'Serie A', 'Italia'),
        (24, 'Atlético Madrid', 'La Liga', 'España');
+ALTER TABLE EQUIPOS ALTER COLUMN id RESTART WITH 25;
 
 
 

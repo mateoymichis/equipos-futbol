@@ -1,9 +1,9 @@
 package ar.mateofernandez.equiposfutbol.controller;
 
 import ar.mateofernandez.equiposfutbol.exception.EquipoException;
-import ar.mateofernandez.equiposfutbol.model.CrearEquipoDto;
+import ar.mateofernandez.equiposfutbol.model.dto.CrearEquipoDto;
 import ar.mateofernandez.equiposfutbol.model.Equipo;
-import ar.mateofernandez.equiposfutbol.model.ErrorResponse;
+import ar.mateofernandez.equiposfutbol.model.response.ErrorResponse;
 import ar.mateofernandez.equiposfutbol.service.EquipoServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
