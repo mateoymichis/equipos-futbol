@@ -21,4 +21,16 @@ public class Equipo {
     private String nombre;
     private String liga;
     private String pais;
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this.getClass() != obj.getClass()) {
+            return false;
+        }
+        Equipo equipo = (Equipo) obj;
+        return (equipo.getId().equals(this.getId()) &&
+                equipo.getNombre().equals(this.getNombre()) &&
+                equipo.getLiga().equals(this.getLiga()) &&
+                equipo.getPais().equals(this.getPais()));
+    }
 }
