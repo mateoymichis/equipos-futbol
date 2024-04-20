@@ -36,7 +36,7 @@ public class SecurityConfig {
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .headers(headers ->
                         headers
-                                .frameOptions().sameOrigin() // Permitir iframes de la consola H2 (cambiar)
+                                .frameOptions().sameOrigin()
                 )
                 .build();
     }
