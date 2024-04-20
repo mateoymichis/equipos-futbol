@@ -25,8 +25,8 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authRequest ->
                         authRequest
-                                .requestMatchers("/auth/**", "/h2-console/**").permitAll()
-                                .anyRequest().authenticated()
+                                .requestMatchers("/equipos/**").authenticated()
+                                .anyRequest().permitAll()
                 )
                 .sessionManagement(sessionManager ->
                         sessionManager
