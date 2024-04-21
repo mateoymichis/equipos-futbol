@@ -1,6 +1,7 @@
 package ar.mateofernandez.equiposfutbol.security.auth;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,7 +15,12 @@ public class AuthController {
     private final AuthService authService;
     @PostMapping("login")
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest loginRequest) {
-        return ResponseEntity.ok(authService.login(loginRequest));
+        try {
+            AuthResponse authResponse = authService.login(loginRequest);
+            return ResponseEntity.ok(authResponse);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
     }
 
     @PostMapping("register")
