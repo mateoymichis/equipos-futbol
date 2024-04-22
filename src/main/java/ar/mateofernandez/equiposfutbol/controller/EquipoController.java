@@ -5,6 +5,8 @@ import ar.mateofernandez.equiposfutbol.model.dto.CrearEquipoDto;
 import ar.mateofernandez.equiposfutbol.model.Equipo;
 import ar.mateofernandez.equiposfutbol.model.response.ErrorResponse;
 import ar.mateofernandez.equiposfutbol.service.EquipoServiceImpl;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -26,11 +28,15 @@ public class EquipoController {
         this.equipoService = equipoService;
     }
 
+    @Operation(summary = "getAll", description = "Ver todos los equipos")
+    @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping
     public ResponseEntity<List<Equipo>> getAll() {
         return new ResponseEntity<>(equipoService.getAll(), HttpStatus.OK);
     }
 
+    @Operation(summary = "get", description = "Ver un equipo dada la id")
+    @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("/{id}")
     public ResponseEntity<Object> get(@PathVariable("id") Integer id) {
         try {
@@ -42,11 +48,15 @@ public class EquipoController {
 
     }
 
+    @Operation(summary = "findByName", description = "Buscar equipos")
+    @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("/buscar")
     public List<Equipo> findByName(@RequestParam String nombre) {
         return equipoService.findByName(nombre);
     }
 
+    @Operation(summary = "save", description = "Crear un equipo")
+    @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping
     public ResponseEntity<Object> save(@Validated @RequestBody CrearEquipoDto equipoDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -57,6 +67,8 @@ public class EquipoController {
         return new ResponseEntity<>(equipo, HttpStatus.CREATED);
     }
 
+    @Operation(summary = "edit", description = "Editar un equipo")
+    @SecurityRequirement(name = "Bearer Authentication")
     @PutMapping("/{id}")
     public ResponseEntity<Object> edit(@PathVariable Integer id, @RequestBody CrearEquipoDto equipo) {
         try {
@@ -67,6 +79,8 @@ public class EquipoController {
         }
     }
 
+    @Operation(summary = "delete", description = "Borrar un equipo")
+    @SecurityRequirement(name = "Bearer Authentication")
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> delete(@PathVariable Integer id) {
         try {
