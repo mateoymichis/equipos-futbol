@@ -1,5 +1,6 @@
 package ar.mateofernandez.equiposfutbol.security.auth;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AuthController {
     private final AuthService authService;
+
+    @Operation(summary = "login", description = "Iniciar sesión")
     @PostMapping("login")
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest loginRequest) {
         try {
@@ -23,6 +26,7 @@ public class AuthController {
         }
     }
 
+    @Operation(summary = "register", description = "Registrar un usuario")
     @PostMapping("register")
     public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest registerRequest) {
         return ResponseEntity.ok(authService.register(registerRequest));

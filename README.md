@@ -4,7 +4,7 @@ API para gestionar información de equipos de fútbol. Desarrollada con Spring B
 
 ## Tabla de Contenidos
 
-1. [Instalación](#instalacion)
+1. [Instalación](#instalación)
 2. [Uso](#uso)
 3. [Endpoints de la API](#endpoints-de-la-api)
 4. [Ejemplos](#ejemplos)
@@ -25,7 +25,7 @@ También se puede ejecutar el proyecto, luego de clonarlo, utilizando un IDE de 
 
 La API se ejecutará en el puerto 8080 (se puede cambiar el puerto desde `application.properties`).
 Las peticiones a `/equipos`, se encuentran securizadas, por lo que primero se deberá registrar un usuario en la app y utilizar el token de la respuesta para que las peticiones sean exitosas.
-El proyecto está destinado a pruebas, por lo que se puede acceder a la documentación de Swagger (http://localhost:8080/swagger-ui/index.html) y a la base de datos en memoria H2 (http://localhost:8080/h2-console)
+El proyecto está destinado a pruebas, por lo que se puede acceder a la documentación de Swagger (http://localhost:8080/swagger-ui/index.html) y a la base de datos en memoria H2 (http://localhost:8080/h2-console) sin autenticarse.
 
 ## Endpoints de la API
 
@@ -90,6 +90,7 @@ PUT /auth/login
   "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNzEzNjIyODYyLCJleHAiOjE3MTM2MjQzMDJ9.NjoCoezA1VF6MXULzDO_Ozjjco05-JK5OMYSTWVqyos"
 }
 ```
+#### Response (401 Unauthorized)
 
 ### Endpoint
 
@@ -258,4 +259,5 @@ GET /equipos?nombre={valor}
 ## Contacto
 
 Mateo Fernandez
+
 Email: mateo.rost@gmail.com
